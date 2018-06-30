@@ -5,19 +5,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
-    <com.jerryjin.fastandroid.widget.progressbar.RoundProgressBar
+    <com.jerryjin.fastandroid.ui.widget.progressbar.RoundProgressBar
         android:id="@+id/progressBar"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_centerInParent="true"
         android:background="#b9afaf"
-        android:layout_centerInParent = "true"
-        app:color="@color/colorAccent"
-        app:lineWidth="5dp"
-        app:radius="50dp"
         android:progress="50"
         android:textSize="20sp"
-        />
+        app:color="@color/colorAccent"
+        app:lineWidth="5dp" />
 
 </RelativeLayout>

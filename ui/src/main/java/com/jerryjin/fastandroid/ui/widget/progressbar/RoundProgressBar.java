@@ -1,4 +1,4 @@
-package com.jerryjin.fastandroid.widget.progressbar;
+package com.jerryjin.fastandroid.ui.widget.progressbar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,14 +10,15 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.jerryjin.fastandroid.R;
-import com.jerryjin.fastandroid.utility.UiUtility;
+import com.jerryjin.fastandroid.ui.R;
+import com.jerryjin.fastandroid.ui.utility.UiUtility;
 
 public class RoundProgressBar extends AbstractProgressBar {
 
     private static final String KEY_PROGRESS = "key_progress";
     private static final String INSTANCE = "INSTANCE";
 
+    private int mPadding;
     private int mLineColor;
     private int mLineWidth;
     private int mRadius;
@@ -41,19 +42,32 @@ public class RoundProgressBar extends AbstractProgressBar {
     public void initStyle(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RoundProgressBar);
 
-        mLineColor = array.getColor(R.styleable.RoundProgressBar_color, getResources().getColor(R.color.light_purple));
-        mLineWidth = (int) array.getDimension(R.styleable.RoundProgressBar_lineWidth, UiUtility.dp2px(context, 3));
-        mRadius = (int) array.getDimension(R.styleable.RoundProgressBar_radius, UiUtility.dp2px(context, 20));
-        mTextSize = (int) array.getDimension(R.styleable.RoundProgressBar_android_textSize, UiUtility.sp2px(context, 16));
-        mProgress = array.getInt(R.styleable.RoundProgressBar_android_progress, 0);
+        try {
+            mPadding = (int) array.getDimension(R.styleable.RoundProgressBar_android_padding, UiUtility.dp2px(context, 5));
+            if (mPadding == 0){
+                mPadding = (int) UiUtility.dp2px(context, 5);
+            }
 
-        array.recycle();
+            mLineColor = array.getColor(R.styleable.RoundProgressBar_color, getResources().getColor(R.color.light_purple));
+            mLineWidth = (int) array.getDimension(R.styleable.RoundProgressBar_lineWidth, UiUtility.dp2px(context, 3));
+            mTextSize = (int) array.getDimension(R.styleable.RoundProgressBar_android_textSize, UiUtility.sp2px(context, 16));
+            mProgress = array.getInt(R.styleable.RoundProgressBar_android_progress, 0);
+        } catch (NullPointerException e) {
+            mPadding = (int) UiUtility.dp2px(context, 5);
+            mLineColor = getResources().getColor(R.color.light_purple);
+            mLineWidth = (int) UiUtility.dp2px(context, 3);
+            mTextSize = (int) UiUtility.sp2px(context, 16);
+            mProgress = 0;
+        } finally {
+            array.recycle();
+        }
     }
 
     @Override
     public void initPaint() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mLineColor);
     }
@@ -61,6 +75,7 @@ public class RoundProgressBar extends AbstractProgressBar {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        mRadius = (Math.min(w, h) - mPadding) / 2;
         rectF = new RectF(0, 0, mRadius * 2, mRadius * 2);
     }
 
@@ -77,37 +92,29 @@ public class RoundProgressBar extends AbstractProgressBar {
         int height = 0;
 
         if (widthMode == MeasureSpec.EXACTLY) {
-            width = widthSize;
+            width = widthSize + mPadding * 2;
+            System.out.println("EXACTLY " + UiUtility.px2dp(getContext(), width) + "mPadding: " + mPadding);
         } else {
-            int demandWidth = measureWidth() + getPaddingStart() + getPaddingEnd();
+            int demandWidth = width + getPaddingStart() + getPaddingEnd();
             if (widthMode == MeasureSpec.AT_MOST) {
-                width = Math.min(demandWidth, mLineWidth);
+                width = Math.min(demandWidth, width);
             } else {
                 width = demandWidth;
             }
         }
 
         if (heightMode == MeasureSpec.EXACTLY) {
-            height = heightSize;
+            height = heightSize + mPadding * 2;
         } else {
-            int demandHeight = measureHeight() + getPaddingTop() + getPaddingBottom();
+            int demandHeight = height + getPaddingTop() + getPaddingBottom();
             if (heightMode == MeasureSpec.AT_MOST) {
-                height = Math.min(demandHeight, mLineWidth);
+                height = Math.min(demandHeight, width);
             } else {
                 height = demandHeight;
             }
         }
-        width = Math.min(width, height);
-        //noinspection SuspiciousNameCombination
-        setMeasuredDimension(width, width);
-    }
 
-    private int measureHeight() {
-        return mRadius * 2;
-    }
-
-    private int measureWidth() {
-        return mRadius * 2;
+        setMeasuredDimension(width, height);
     }
 
     @Override

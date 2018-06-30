@@ -1,4 +1,4 @@
-package com.jerryjin.fastandroid;
+package com.jerryjin.fastandroid.common;
 
 import org.junit.Test;
 

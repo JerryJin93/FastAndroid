@@ -1,13 +1,9 @@
-package com.jerryjin.fastandroid.widget.progressbar;
+package com.jerryjin.fastandroid.ui.widget.progressbar;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-
-import com.jerryjin.fastandroid.R;
 
 
 public abstract class AbstractProgressBar extends View {
@@ -35,7 +31,8 @@ public abstract class AbstractProgressBar extends View {
 
     /**
      * Load attributes
-     * @param attrs AttributeSet
+     *
+     * @param attrs   AttributeSet
      * @param context Context
      */
     public abstract void initStyle(Context context, AttributeSet attrs);

@@ -1,4 +1,4 @@
-package com.jerryjin.fastandroid;
+package com.jerryjin.fastandroid.ui;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.jerryjin.fastandroid.test", appContext.getPackageName());
+        assertEquals("com.jerryjin.fastandroid.ui.test", appContext.getPackageName());
     }
 }
