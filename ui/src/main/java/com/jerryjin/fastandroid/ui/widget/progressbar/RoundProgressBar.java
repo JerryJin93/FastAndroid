@@ -64,10 +64,8 @@ public class RoundProgressBar extends AbstractProgressBar {
     }
 
     @Override
-    public void initPaint() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
+    protected void initPaint() {
+        super.initPaint();
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mLineColor);
     }

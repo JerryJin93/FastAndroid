@@ -5,8 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/FastAndroid.iml" filepath="$PROJECT_DIR$/FastAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/factory/factory.iml" filepath="$PROJECT_DIR$/factory/factory.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui/ui.iml" filepath="$PROJECT_DIR$/ui/ui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/uia/uia.iml" filepath="$PROJECT_DIR$/uia/uia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utility/utility.iml" filepath="$PROJECT_DIR$/utility/utility.iml" />
     </modules>
   </component>
 </project>
