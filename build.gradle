@@ -31,6 +31,9 @@ task clean(type: Delete) {
 ext{
     supportVersion = '27.1.1'
     butterknifeVersion = "8.5.1"
+    glideVersion = '4.8.0'
     gsonVersion = '2.8.5'
     retrofitVersion = '2.4.0'
+    dbflowVersion = '4.2.4'
+    ossVersion = '+'
 }
