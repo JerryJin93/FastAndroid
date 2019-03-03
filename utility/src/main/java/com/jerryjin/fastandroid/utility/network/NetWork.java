@@ -1,5 +1,7 @@
 package com.jerryjin.fastandroid.utility.network;
 
+import android.support.annotation.NonNull;
+
 import com.jerryjin.fastandroid.utility.handler.Execution;
 
 import okhttp3.OkHttpClient;
@@ -24,9 +26,11 @@ public abstract class NetWork {
 //    }
 
 
+    @NonNull
     protected abstract OkHttpClient getOkHttpClient();
 
-    protected Retrofit getRetrofit(String baseUrl, Converter.Factory factory){
+    @NonNull
+    protected Retrofit getRetrofit(@NonNull String baseUrl, @NonNull Converter.Factory factory){
         OkHttpClient client = getOkHttpClient();
         Retrofit.Builder builder = new Retrofit.Builder();
         return builder

@@ -1,6 +1,7 @@
 package com.jerryjin.fastandroid.utility.handler;
 
 import android.os.Looper;
+import android.support.annotation.NonNull;
 
 import com.jerryjin.fastandroid.utility.handler.runnable.Action;
 
@@ -53,7 +54,8 @@ public final class Execution {
         return uiHandler;
     }
 
-    public static Result updateUIAsync(Action action) {
+    @NonNull
+    public static Result updateUIAsync(@NonNull Action action) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             action.activate();
             return new ActionAsyncTask(action, true);

@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.support.annotation.NonNull;
 
-import com.jerryjin.fastandroid.common.app.Activity;
+import com.jerryjin.fastandroid.common.abs.Activity;
 import com.jerryjin.fastandroid.utility.bean.InstalledApp;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class AppHelper {
      * @param context Context
      * @return 转换好的List
      */
+    @NonNull
     public static List<InstalledApp> getAppList(Context context) {
         PackageManager packageManager = context.getPackageManager();
         List<ResolveInfo> appInfoList = AppHelper.getAppInfo(context);

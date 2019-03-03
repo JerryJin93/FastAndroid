@@ -1,7 +1,10 @@
 package com.jerryjin.fastandroid.common.presenter;
 
+import android.support.annotation.Nullable;
+
 public class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter {
 
+    @Nullable
     protected T mView;
 
     public BasePresenter(T view) {
@@ -13,6 +16,7 @@ public class BasePresenter<T extends BaseContract.View> implements BaseContract.
      *
      * @return T view.
      */
+    @Nullable
     protected final T getView() {
         return mView;
     }

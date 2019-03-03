@@ -1,12 +1,15 @@
 package com.jerryjin.fastandroid.factory;
 
-import com.jerryjin.fastandroid.common.app.Application;
+import android.support.annotation.NonNull;
+
+import com.jerryjin.fastandroid.common.abs.Application;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class Factory {
 
+    @NonNull
     private static final Factory instance;
 
     private final Executor executor;

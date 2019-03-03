@@ -57,7 +57,7 @@ public class UiUtility {
      * @param activity Activity
      * @return The height of current status bar.
      */
-    public static int getStatusBarHeight(Activity activity) {
+    public static int getStatusBarHeight(@NonNull Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && STATUS_BAR_HEIGHT == -1) {
             try {
                 final Resources res = activity.getResources();

@@ -1,5 +1,7 @@
 package com.jerryjin.fastandroid.utility.handler;
 
+import android.support.annotation.Nullable;
+
 import com.jerryjin.fastandroid.utility.handler.runnable.Action;
 
 import java.util.Queue;
@@ -7,6 +9,7 @@ import java.util.Queue;
 public class ActionAsyncTask implements Action, Task {
 
     private final Action mAction;
+    @Nullable
     private Queue<Task> taskPool;
     private boolean mDone = false;
 

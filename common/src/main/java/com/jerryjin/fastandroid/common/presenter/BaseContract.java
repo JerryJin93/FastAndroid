@@ -1,5 +1,7 @@
 package com.jerryjin.fastandroid.common.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.jerryjin.fastandroid.common.widget.recycler.RecyclerAdapter;
 
 /**
@@ -25,6 +27,7 @@ public interface BaseContract {
 
     interface RecyclerView<T extends Presenter, ViewMode> extends View<T> {
 
+        @NonNull
         RecyclerAdapter<ViewMode> getRecyclerAdapter();
 
         void onAdapterDataSetChanged();

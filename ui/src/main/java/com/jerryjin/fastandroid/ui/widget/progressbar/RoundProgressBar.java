@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
@@ -39,7 +40,7 @@ public class RoundProgressBar extends AbstractProgressBar {
     }
 
     @Override
-    public void initStyle(Context context, AttributeSet attrs) {
+    public void initStyle(@NonNull Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.RoundProgressBar);
 
         try {
@@ -116,7 +117,7 @@ public class RoundProgressBar extends AbstractProgressBar {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         mPaint.setStrokeWidth(mLineWidth * 1.0f / 4);
 

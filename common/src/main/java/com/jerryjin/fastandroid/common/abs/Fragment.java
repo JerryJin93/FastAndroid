@@ -1,4 +1,4 @@
-package com.jerryjin.fastandroid.common.app;
+package com.jerryjin.fastandroid.common.abs;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,7 +39,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment {
 
     protected abstract int getLayoutResId();
 
-    protected void initWidget(View root) {
+    protected void initWidget(@NonNull View root) {
         mUnbinder = ButterKnife.bind(this, root);
     }
 

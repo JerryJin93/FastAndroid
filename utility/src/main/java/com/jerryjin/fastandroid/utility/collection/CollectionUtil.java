@@ -1,5 +1,7 @@
 package com.jerryjin.fastandroid.utility.collection;
 
+import android.support.annotation.Nullable;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +11,9 @@ import java.util.Set;
 
 public class CollectionUtil {
 
+    @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> T[] toArray(List<T> tList, Class<T> tClass) {
+    public static <T> T[] toArray(@Nullable List<T> tList, Class<T> tClass) {
         if (tList == null || tList.size() == 0) {
             return null;
         } else {
@@ -25,8 +28,9 @@ public class CollectionUtil {
         }
     }
 
+    @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> T[] toArray(Set<T> tSet, Class<T> tClass) {
+    public static <T> T[] toArray(@Nullable Set<T> tSet, Class<T> tClass) {
         if (tSet == null || tSet.size() == 0) {
             return null;
         } else {
@@ -41,7 +45,8 @@ public class CollectionUtil {
         }
     }
 
-    public static <T> HashSet<T> toHashSet(T[] array) {
+    @Nullable
+    public static <T> HashSet<T> toHashSet(@Nullable T[] array) {
         if (array == null || array.length == 0)
             return null;
         HashSet<T> set = new HashSet<>();
@@ -49,7 +54,8 @@ public class CollectionUtil {
         return set;
     }
 
-    public static <T> ArrayList<T> toArrayList(T[] array) {
+    @Nullable
+    public static <T> ArrayList<T> toArrayList(@Nullable T[] array) {
         if (array == null || array.length == 0) {
             return null;
         } else {

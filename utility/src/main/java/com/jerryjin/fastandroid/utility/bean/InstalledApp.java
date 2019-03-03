@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.jerryjin.fastandroid.ui.utility.IconHelper;
 
@@ -12,7 +14,7 @@ public class InstalledApp implements Parcelable {
 
     public static final Creator<InstalledApp> CREATOR = new Creator<InstalledApp>() {
         @Override
-        public InstalledApp createFromParcel(Parcel in) {
+        public InstalledApp createFromParcel(@NonNull Parcel in) {
             return new InstalledApp(in);
         }
 
@@ -24,6 +26,7 @@ public class InstalledApp implements Parcelable {
 
     private String packageName;
     private String className;
+    @Nullable
     private Bitmap icon;
     private String name;
 
@@ -61,6 +64,7 @@ public class InstalledApp implements Parcelable {
         this.className = className;
     }
 
+    @Nullable
     public Bitmap getIcon() {
         return icon;
     }
@@ -83,7 +87,7 @@ public class InstalledApp implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(packageName);
         dest.writeParcelable(icon, 0);
         dest.writeString(name);

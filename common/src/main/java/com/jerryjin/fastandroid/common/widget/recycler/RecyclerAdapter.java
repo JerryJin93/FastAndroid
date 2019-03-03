@@ -2,6 +2,7 @@ package com.jerryjin.fastandroid.common.widget.recycler;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,7 @@ public abstract class RecyclerAdapter<T>
     }
 
 
+    @NonNull
     protected abstract ViewHolder<T> onCreateViewHolder(View root, int viewType);
 
 
@@ -89,7 +91,7 @@ public abstract class RecyclerAdapter<T>
         notifyItemInserted(mDataList.size() - 1);
     }
 
-    public void add(T... dataList) {
+    public void add(@Nullable T... dataList) {
         if (dataList != null && dataList.length > 0) {
             int startPosition = mDataList.size() - 1;
             Collections.addAll(mDataList, dataList);
@@ -97,7 +99,7 @@ public abstract class RecyclerAdapter<T>
         }
     }
 
-    public void add(Collection<T> dataCollection) {
+    public void add(@Nullable Collection<T> dataCollection) {
         if (dataCollection != null && dataCollection.size() > 0) {
             int startPosition = mDataList.size();
             mDataList.addAll(dataCollection);
@@ -110,7 +112,7 @@ public abstract class RecyclerAdapter<T>
         notifyDataSetChanged();
     }
 
-    public void replace(Collection<T> dataCollection) {
+    public void replace(@Nullable Collection<T> dataCollection) {
         if (dataCollection == null || dataCollection.size() == 0){
             return;
         }
@@ -119,7 +121,7 @@ public abstract class RecyclerAdapter<T>
     }
 
     @Override
-    public void update(T data, ViewHolder<T> holder) {
+    public void update(T data, @NonNull ViewHolder<T> holder) {
         int pos = holder.getAdapterPosition();
         if (pos >= 0) {
             // mDataList.remove(pos);
@@ -130,7 +132,7 @@ public abstract class RecyclerAdapter<T>
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         ViewHolder holder = (ViewHolder) v.getTag(R.id.tag_recycler_view_holder);
         if (this.mListener != null) {
             int position = holder.getAdapterPosition();
@@ -140,7 +142,7 @@ public abstract class RecyclerAdapter<T>
 
 
     @Override
-    public boolean onLongClick(View v) {
+    public boolean onLongClick(@NonNull View v) {
         ViewHolder holder = (ViewHolder) v.getTag(R.id.tag_recycler_view_holder);
         if (this.mListener != null) {
             int position = holder.getAdapterPosition();
@@ -168,7 +170,7 @@ public abstract class RecyclerAdapter<T>
         private Unbinder unbinder;
         private AdapterCallback<T> callback;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 

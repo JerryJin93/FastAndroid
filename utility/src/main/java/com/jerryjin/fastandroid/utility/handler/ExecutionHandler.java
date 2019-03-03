@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.jerryjin.fastandroid.utility.handler.runnable.Action;
 
@@ -67,12 +69,12 @@ public final class ExecutionHandler extends Handler implements IHandler {
     }
 
     @Override
-    public void async(Task task) {
+    public void async(@NonNull Task task) {
         asyncAllocator.offer(task);
     }
 
     @Override
-    public void sync(Task task) {
+    public void sync(@NonNull Task task) {
         syncAllocator.offer(task);
     }
 
@@ -86,6 +88,7 @@ public final class ExecutionHandler extends Handler implements IHandler {
     private static class Allocator {
 
         private final Queue<Task> taskPool;
+        @Nullable
         private Poster iPoster;
         private boolean isActive;
 
@@ -94,7 +97,7 @@ public final class ExecutionHandler extends Handler implements IHandler {
             this.iPoster = iPoster;
         }
 
-        void offer(Task task) {
+        void offer(@NonNull Task task) {
             synchronized (taskPool) {
                 taskPool.offer(task);
                 task.setTaskPool(taskPool);

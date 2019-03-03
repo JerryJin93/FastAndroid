@@ -1,5 +1,8 @@
 package com.jerryjin.fastandroid.utility.text;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -31,11 +34,11 @@ public class StringMan {
         stringMan = new String(builder);
     }
 
-    public StringMan(String[] strings) {
+    public StringMan(@NonNull String[] strings) {
         append(strings);
     }
 
-    public StringMan(List<String> stringList) {
+    public StringMan(@NonNull List<String> stringList) {
         append(stringList);
     }
 
@@ -72,11 +75,13 @@ public class StringMan {
     }
 
     //OK
+    @NonNull
     public static int[] getAllIndexes(String origin, String str) {
         return new StringMan(origin).allIndexesOf(str);
     }
 
-    public static int[] getAllIndexes(String origin, String str, boolean sensitive) {
+    @NonNull
+    public static int[] getAllIndexes(String origin, @NonNull String str, boolean sensitive) {
         return new StringMan(origin).allIndexesOf(str, sensitive);
     }
 
@@ -113,11 +118,12 @@ public class StringMan {
         return builder.toString();
     }
 
-    public static String append(String original, String[] strings) {
+    public static String append(String original, @NonNull String[] strings) {
         return original + new StringMan().stringOf(strings);
     }
 
-    public static StringMan deleteString(String origin, String toDelete) {
+    @NonNull
+    public static StringMan deleteString(String origin, @NonNull String toDelete) {
         return new StringMan(origin).deleteString(toDelete);
     }
 
@@ -141,15 +147,15 @@ public class StringMan {
         return new StringMan(origin).surround(prefix, suffix).toString();
     }
 
-    public static String surroundAll(String origin, String strToSurround, String prefix, String suffix) {
+    public static String surroundAll(String origin, @NonNull String strToSurround, @NonNull String prefix, String suffix) {
         return new StringMan(origin).surroundAll(strToSurround, prefix, suffix).toString();
     }
 
-    public static String detachSurround(String origin, String prefix, String suffix) {
+    public static String detachSurround(String origin, @NonNull String prefix, @NonNull String suffix) {
         return new StringMan(origin).detachSurround(prefix, suffix).toString();
     }
 
-    public static String detachAllSurrounds(String origin, String prefix, String suffix) {
+    public static String detachAllSurrounds(String origin, @NonNull String prefix, @NonNull String suffix) {
         return new StringMan(origin).detachAllSurrounds(prefix, suffix).toString();
     }
 
@@ -165,6 +171,7 @@ public class StringMan {
         return origin.toCharArray();
     }
 
+    @Nullable
     public static String[] toStringArray(String origin) {
         return new StringMan(origin).toStringArray();
     }
@@ -173,6 +180,7 @@ public class StringMan {
         return new StringMan(origin).shuffle().toString();
     }
 
+    @NonNull
     public static int[] randomIndex(int len) {
         int[] randomIndex = new int[len];
         List<Integer> tmpIndexList = new ArrayList<>();
@@ -243,7 +251,7 @@ public class StringMan {
         return b;
     }
 
-    public static int[] trimIntArray(int[] array) {
+    public static int[] trimIntArray(@NonNull int[] array) {
         int[] tmp = array;
         int[] result;
         List<Integer> integers;
@@ -264,7 +272,8 @@ public class StringMan {
         }
     }
 
-    public static List<Integer> intArrayToList(int[] intArray, int start, int end) throws IndexOutOfBoundsException {
+    @NonNull
+    public static List<Integer> intArrayToList(@NonNull int[] intArray, int start, int end) throws IndexOutOfBoundsException {
         if ((start >= 0) && (start <= intArray.length - 1) && ((end >= 0) && (end <= intArray.length - 1))) {
             List<Integer> integers = new ArrayList<>();
             if (start > end) {
@@ -281,7 +290,8 @@ public class StringMan {
         }
     }
 
-    public static int[] integerListToArray(List<Integer> integerList) {
+    @Nullable
+    public static int[] integerListToArray(@Nullable List<Integer> integerList) {
         if (integerList != null) {
             int[] array = new int[integerList.size()];
             for (int i = 0; i < array.length; i++) {
@@ -312,7 +322,7 @@ public class StringMan {
      * @param sensitive The specific string is either sensitive to the upper/lower case or not.
      * @return True if s1 contains s2, false otherwise.
      */
-    public static boolean contains(String s1, String s2, boolean sensitive) {
+    public static boolean contains(String s1, @NonNull String s2, boolean sensitive) {
         return new StringMan(s1).contains(s2, sensitive);
     }
 
@@ -323,7 +333,7 @@ public class StringMan {
      * @param strings The string array to search for.
      * @return True if string contains all the strings in the array, false otherwise.
      */
-    public static boolean containsAll(String string, String[] strings) {
+    public static boolean containsAll(String string, @NonNull String[] strings) {
         return new StringMan(string).containsAll(strings);
     }
 
@@ -335,7 +345,7 @@ public class StringMan {
      * @param sensitive All of the strings in the specific array are either sensitive to upper/lower case or not.
      * @return True if string contains all the strings in the array, false otherwise.
      */
-    public static boolean containsAll(String string, String[] strings, boolean sensitive) {
+    public static boolean containsAll(String string, @NonNull String[] strings, boolean sensitive) {
         return new StringMan(string).containsAll(strings, sensitive);
     }
 
@@ -346,7 +356,7 @@ public class StringMan {
      * @param strings The string array to search for.
      * @return True if string contains any string in the array, false otherwise.
      */
-    public static boolean containsAny(String string, String[] strings) {
+    public static boolean containsAny(String string, @NonNull String[] strings) {
         return new StringMan(string).containsAny(strings);
     }
 
@@ -358,7 +368,7 @@ public class StringMan {
      * @param sensitive All of the strings in the specific array are either sensitive to upper/lower case or not.
      * @return True if string contains any string in the array, false otherwise.
      */
-    public static boolean containsAny(String string, String[] strings, boolean sensitive) {
+    public static boolean containsAny(String string, @NonNull String[] strings, boolean sensitive) {
         return new StringMan(string).containsAny(strings, sensitive);
     }
 
@@ -366,10 +376,11 @@ public class StringMan {
         return getAllIndexes(origin, substring).length;
     }
 
-    public static int countSubstring(String origin, String substring, boolean sensitive) {
+    public static int countSubstring(String origin, @NonNull String substring, boolean sensitive) {
         return getAllIndexes(origin, substring, sensitive).length;
     }
 
+    @Nullable
     public static String getStringBetween(String origin, String identifier1, String identifier2) {
         return new StringMan(origin).stringBetween(identifier1, identifier2);
     }
@@ -470,6 +481,7 @@ public class StringMan {
      * @return An array of all indexes.
      * @throws NullPointerException Throws exception when this.stringMan is null.
      */
+    @NonNull
     public int[] allIndexesOf(String str) throws NullPointerException {
         List<Integer> indexesList = new ArrayList<>();
         int index = stringMan.indexOf(str);
@@ -484,7 +496,8 @@ public class StringMan {
         return indexes;
     }
 
-    public int[] allIndexesOf(String str, boolean sensitive) {
+    @NonNull
+    public int[] allIndexesOf(@NonNull String str, boolean sensitive) {
         if (sensitive) {
             return allIndexesOf(str);
         } else {
@@ -510,6 +523,7 @@ public class StringMan {
         return stringMan.lastIndexOf(str);
     }
 
+    @NonNull
     public StringMan append(String str) {
         if (stringMan != null) {
             setStringMan(new StringBuilder(stringMan).append(str).toString());
@@ -519,55 +533,65 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan append(boolean b) {
         this.append(String.valueOf(b));
         return this;
     }
 
+    @NonNull
     public StringMan append(char c) {
         this.append(String.valueOf(c));
         return this;
     }
 
+    @NonNull
     public StringMan append(int i) {
         this.append(String.valueOf(i));
         return this;
     }
 
+    @NonNull
     public StringMan append(float f) {
         this.append(String.valueOf(f));
         return this;
     }
 
+    @NonNull
     public StringMan append(double d) {
         this.append(String.valueOf(d));
         return this;
     }
 
-    public StringMan append(StringMan stringMan) {
+    @NonNull
+    public StringMan append(@NonNull StringMan stringMan) {
         this.append(stringMan.toString());
         return this;
     }
 
-    public StringMan append(String[] strings) {
+    @NonNull
+    public StringMan append(@NonNull String[] strings) {
         String str = stringOf(strings);
         this.append(str);
         return this;
     }
 
-    public StringMan appendMultiple(String... strings) {
+    @NonNull
+    public StringMan appendMultiple(@NonNull String... strings) {
         String str = stringOf(strings);
         this.append(str);
         return this;
     }
 
-    public StringMan append(List<String> stringList) {
+    @NonNull
+    public StringMan append(@NonNull List<String> stringList) {
         for (String s : stringList) {
             append(s);
         }
         return this;
     }
 
+    @NonNull
     public StringMan insert(int offset, String str) {
         if (stringMan != null) {
             setStringMan(new StringBuilder(stringMan).insert(offset, str).toString());
@@ -577,6 +601,7 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan insert(int offset, String toInsert, int num) {
         StringMan stringMan = new StringMan();
         for (int i = 0; i < num; i++) {
@@ -586,13 +611,14 @@ public class StringMan {
         return this;
     }
 
-    public StringMan insertArray(int offset, String[] strings) {
+    @NonNull
+    public StringMan insertArray(int offset, @NonNull String[] strings) {
         String str = stringOf(strings);
         this.insert(offset, str);
         return this;
     }
 
-    public String stringOf(String[] strings) {
+    public String stringOf(@NonNull String[] strings) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
             builder.append(strings[i]);
@@ -600,7 +626,8 @@ public class StringMan {
         return builder.toString();
     }
 
-    public StringMan deleteString(String toDelete) {
+    @NonNull
+    public StringMan deleteString(@NonNull String toDelete) {
         try {
             StringBuilder builder = new StringBuilder(stringMan);
             int[] indexes = allIndexesOf(toDelete);
@@ -617,6 +644,7 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan delete(int start, int end) {
         if (stringMan != null) {
             StringBuilder builder = new StringBuilder(stringMan);
@@ -626,6 +654,7 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan clear() {
         setStringMan("");
         return this;
@@ -640,6 +669,7 @@ public class StringMan {
      *
      * @return Reversed StringMan.
      */
+    @NonNull
     public StringMan reverse() {
         if (stringMan != null) {
             setStringMan(new StringBuilder(stringMan).reverse().toString());
@@ -654,6 +684,7 @@ public class StringMan {
      * @param end   Exclusive.
      * @return The substring from start to end.
      */
+    @NonNull
     public StringMan subString(int start, int end) {
         if (stringMan != null) {
             setStringMan(stringMan.substring(start, end));
@@ -666,6 +697,7 @@ public class StringMan {
      * @param suffix The suffix string you want to insert.
      * @return Current StringMan object that has been processed.
      */
+    @NonNull
     public StringMan surround(String prefix, String suffix) {
         if (stringMan != null) {
             setStringMan(new StringBuilder(stringMan).insert(0, prefix).append(suffix).toString());
@@ -675,7 +707,8 @@ public class StringMan {
         return this;
     }
 
-    public StringMan surroundAll(String strToSurround, String prefix, String suffix) {
+    @NonNull
+    public StringMan surroundAll(@NonNull String strToSurround, @NonNull String prefix, String suffix) {
         if (stringMan != null) {
             int[] indexes = allIndexesOf(strToSurround);
             StringBuilder builder = new StringBuilder(stringMan);
@@ -692,7 +725,8 @@ public class StringMan {
         return this;
     }
 
-    public StringMan detachSurround(String prefix, String suffix) {
+    @NonNull
+    public StringMan detachSurround(@NonNull String prefix, @NonNull String suffix) {
         if (stringMan != null) {
             if (stringMan.startsWith(prefix)) {
                 delete(0, prefix.length());
@@ -712,7 +746,8 @@ public class StringMan {
      * @param suffix The suffix string you wang to detach.
      * @return Current object after being processed.
      */
-    public StringMan detachAllSurrounds(String prefix, String suffix) {
+    @NonNull
+    public StringMan detachAllSurrounds(@NonNull String prefix, @NonNull String suffix) {
         if (stringMan != null) {
             int[] indexesPrefix = allIndexesOf(prefix);
             int[] indexesSuffix = allIndexesOf(suffix);
@@ -740,7 +775,7 @@ public class StringMan {
         return this;
     }
 
-    public boolean isEnclosedBy(String prefix, String suffix) {
+    public boolean isEnclosedBy(@Nullable String prefix, @Nullable String suffix) {
         if (stringMan == null) {
             throw new IllegalArgumentException("The stringMan itself can't be null.");
         }
@@ -757,7 +792,8 @@ public class StringMan {
         return isEnclosedBy(surround, surround);
     }
 
-    public StringMan getComplementaryOf(String string) {
+    @NonNull
+    public StringMan getComplementaryOf(@Nullable String string) {
         if (stringMan != null && !stringMan.equals("")) {
             if (string != null && !string.equals("")) {
                 if (stringMan.length() >= string.length()) {
@@ -780,6 +816,7 @@ public class StringMan {
         return this;
     }
 
+    @Nullable
     public char[] toCharArray() {
         if (stringMan != null) {
             char[] chars = stringMan.toCharArray();
@@ -789,6 +826,7 @@ public class StringMan {
         }
     }
 
+    @Nullable
     public String[] toStringArray() {
         if (stringMan != null) {
             char[] chars = stringMan.toCharArray();
@@ -802,6 +840,7 @@ public class StringMan {
         }
     }
 
+    @NonNull
     public StringMan shuffle() {
         if (stringMan != null) {
             char[] chars = stringMan.toCharArray();
@@ -816,6 +855,7 @@ public class StringMan {
         return this;
     }
 
+    @Nullable
     public int[] randomIndex() {
         if (stringMan != null) {
             int len = stringMan.length();
@@ -865,7 +905,7 @@ public class StringMan {
      * @param sensitive The specific string is either sensitive to the upper/lower case or not.
      * @return True if stringMan contains string, false otherwise.
      */
-    public boolean contains(String string, boolean sensitive) {
+    public boolean contains(@NonNull String string, boolean sensitive) {
         if (sensitive) {
             return stringMan.contains(string);
         } else {
@@ -879,7 +919,7 @@ public class StringMan {
      * @param strings The string array to search for.
      * @return True if stringMan contains all the strings in the array, false otherwise.
      */
-    public boolean containsAll(String[] strings) {
+    public boolean containsAll(@NonNull String[] strings) {
         int len = strings.length;
         int count = 0;
         for (int i = 0; i < len; i++) {
@@ -897,7 +937,7 @@ public class StringMan {
      * @param sensitive All of the strings in the specific array are either sensitive to upper/lower case or not.
      * @return True if stringMan contains all the strings in the array, false otherwise.
      */
-    public boolean containsAll(String[] strings, boolean sensitive) {
+    public boolean containsAll(@NonNull String[] strings, boolean sensitive) {
         if (sensitive) {
             return containsAll(strings);
         } else {
@@ -918,7 +958,7 @@ public class StringMan {
      * @param strings The string array to search for.
      * @return True if stringMan contains any string in the array, false otherwise.
      */
-    public boolean containsAny(String[] strings) {
+    public boolean containsAny(@NonNull String[] strings) {
         int len = strings.length;
         int count = 0;
         for (int i = 0; i < len; i++) {
@@ -941,7 +981,7 @@ public class StringMan {
      * @param sensitive All of the strings in the specific array are either sensitive to upper/lower case or not.
      * @return True if stringMan contains any string in the array, false otherwise.
      */
-    public boolean containsAny(String[] strings, boolean sensitive) {
+    public boolean containsAny(@NonNull String[] strings, boolean sensitive) {
         if (sensitive) {
             return containsAny(strings);
         } else {
@@ -965,10 +1005,11 @@ public class StringMan {
         return allIndexesOf(substring).length;
     }
 
-    public int countSubstring(String substring, boolean sensitive) {
+    public int countSubstring(@NonNull String substring, boolean sensitive) {
         return allIndexesOf(substring, sensitive).length;
     }
 
+    @Nullable
     public String stringBetween(String identifier1, String identifier2) {
         if (stringMan != null && stringMan.length() > 0) {
             int firstIndex = firstIndex(stringMan, identifier1);
@@ -988,14 +1029,17 @@ public class StringMan {
         }
     }
 
+    @NonNull
     public StringMan paddingLeft(String toInsert, int num) {
         return insert(0, toInsert, num);
     }
 
+    @NonNull
     public StringMan paddingRight(String toInsert, int num) {
         return insert(stringMan.length(), toInsert, num);
     }
 
+    @NonNull
     public StringMan removeNonWords() {
         StringMan stringMan = new StringMan();
         String[] strings = toStringArray();
@@ -1008,11 +1052,13 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan replace(String old, String replacer) {
         setStringMan(stringMan.replace(old, replacer));
         return this;
     }
 
+    @NonNull
     public StringMan replace(int start, int end, String replacer) {
         setStringMan(new StringBuilder(stringMan).replace(start, end, replacer).toString());
         return this;
@@ -1030,11 +1076,13 @@ public class StringMan {
         return stringMan.endsWith(suffix);
     }
 
+    @NonNull
     public StringMan trim() {
         setStringMan(stringMan.trim());
         return this;
     }
 
+    @NonNull
     public StringMan trimEmptyLines() {
 
         while (startsWith("\n") || endsWith("\n")) {
@@ -1044,6 +1092,7 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan deleteSpaces() {
 //        StringMan stringMan = new StringMan(getStringMan().split("\\s+"));
 //        setStringMan(stringMan.toString());
@@ -1051,12 +1100,14 @@ public class StringMan {
         return this;
     }
 
+    @NonNull
     public StringMan shrinkSpaces() {
         trim();
         setStringMan(stringMan.replaceAll("\\s\\s+", " "));
         return this;
     }
 
+    @NonNull
     public StringMan shrinkEmptyLines() {
         trimEmptyLines();
         setStringMan(stringMan.replaceAll("\n\n+", "\n"));
@@ -1064,7 +1115,7 @@ public class StringMan {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (this == o) {
             return true;
         }

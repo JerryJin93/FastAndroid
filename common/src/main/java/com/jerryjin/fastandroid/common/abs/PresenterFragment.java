@@ -1,4 +1,4 @@
-package com.jerryjin.fastandroid.common.app;
+package com.jerryjin.fastandroid.common.abs;
 
 import android.content.Context;
 
